@@ -1,2 +1,2 @@
-export * from './utils'
-export * from './vendor'
+export * from './utils';
+export * from './vendor';
