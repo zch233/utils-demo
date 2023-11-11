@@ -65,6 +65,7 @@
         ]
     },
     "dependencies": {
-        "dayjs": "1.11.10"
+        "dayjs": "1.11.10",
+        "query-string": "8.1.0"
     }
 }
