@@ -5,7 +5,7 @@ interface UseRafOptions {
     isLoop?: boolean;
 }
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#useraf
+// https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/useRaf.html
 export function useRaf(fn: FrameRequestCallback, options?: UseRafOptions): () => void {
     if (inBrowser) {
         const { interval = 0, isLoop = false } = options || {};

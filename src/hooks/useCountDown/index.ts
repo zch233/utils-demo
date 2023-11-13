@@ -43,6 +43,7 @@ function isSameSecond(time1: number, time2: number): boolean {
     return Math.floor(time1 / 1000) === Math.floor(time2 / 1000);
 }
 
+// https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/useCountDown.html
 export function useCountDown(options: UseCountDownOptions) {
     let rafId: number;
     let endTime: number;

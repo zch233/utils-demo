@@ -4,6 +4,7 @@ import { inBrowser } from '../utils';
 let width: Ref<number>;
 let height: Ref<number>;
 
+// https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/useWindowSize.html
 export function useWindowSize() {
     if (!width) {
         width = ref(0);

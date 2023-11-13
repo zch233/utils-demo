@@ -5,6 +5,7 @@ type VisibilityState = 'hidden' | 'visible';
 
 let visibility: Ref<VisibilityState>;
 
+// https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/usePageVisibility.html
 export function usePageVisibility() {
     if (!visibility) {
         visibility = ref<VisibilityState>('visible');
