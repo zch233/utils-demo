@@ -58,16 +58,15 @@
         "rollup-plugin-esbuild": "5.0.0",
         "typescript": "5.1.6",
         "vite": "4.5.0",
-        "vitest": "0.34.1"
+        "vitest": "0.34.1",
+        "@types/lodash-es": "4.17.11",
+        "lodash": "4.17.21",
+        "lodash-es": "4.17.21",
+        "vue": "3.3.7"
     },
     "lint-staged": {
         "!(.husky)*": [
             "prettier --write"
         ]
-    },
-    "dependencies": {
-        "@types/lodash-es": "4.17.11",
-        "lodash": "4.17.21",
-        "lodash-es": "4.17.21"
     }
 }
