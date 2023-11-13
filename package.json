@@ -45,16 +45,17 @@
         "@types/node": "20.5.0",
         "@types/throttle-debounce": "5.0.0",
         "bumpp": "9.1.1",
+        "dayjs": "1.11.10",
         "eslint": "8.47.0",
         "esno": "0.17.0",
         "husky": "7.0.0",
         "lint-staged": "11.1.2",
         "p-limit": "4.0.0",
         "prettier": "3.0.3",
+        "query-string": "8.1.0",
         "rollup": "3.28.0",
         "rollup-plugin-dts": "5.3.1",
         "rollup-plugin-esbuild": "5.0.0",
-        "throttle-debounce": "5.0.0",
         "typescript": "5.1.6",
         "vite": "4.5.0",
         "vitest": "0.34.1"
@@ -65,7 +66,8 @@
         ]
     },
     "dependencies": {
-        "dayjs": "1.11.10",
-        "query-string": "8.1.0"
+        "@types/lodash-es": "4.17.11",
+        "lodash": "4.17.21",
+        "lodash-es": "4.17.21"
     }
 }
