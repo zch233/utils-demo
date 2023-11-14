@@ -43,7 +43,7 @@ export default [
             file: input.replace('src/', '').replace('.ts', '.d.ts'),
             format: 'esm',
         },
-        external: [],
+        external: ['lodash-es'],
         plugins: [dts({ respectExternal: true })],
     })),
 ];
