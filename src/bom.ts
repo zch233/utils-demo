@@ -11,4 +11,4 @@ export const getParams = (key?: string, href?: string | URL, isHash?: boolean) =
 export const getURLParams = (key?: string, href?: string | URL) => getParams(key, href);
 
 // https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#getURLParams
-export const getHashParams = (key?: string, href?: string | URL) => getParams(key, href, true);
+export const getURLHashParams = (key?: string, href?: string | URL) => getParams(key, href, true);
