@@ -60,3 +60,16 @@ export const downloadWithBlob = (_response: AxiosResponse | Blob, filename?: str
         }
     });
 };
+
+// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#stringToHex
+export const stringToHex = (str: string) => str.split('').reduce((res, v, i) => res + str.charCodeAt(i).toString(16), '');
+
+// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#stringToBin
+export const stringToBin = (str: string) =>
+    String.fromCharCode.apply(
+        String,
+        str
+            .split(/(.{2})/)
+            .filter(Boolean)
+            .reduce((res, v) => res.concat(parseInt(v, 16)), [] as number[])
+    );
