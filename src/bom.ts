@@ -1,16 +1,16 @@
 import queryString from 'query-string';
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#getParams
+// https://release.group-ds.com/dev-newbee-handbook/utils/bom.html#getParams
 export const getParams = (key?: string, href?: string | URL, isHash?: boolean) => {
     const realURL = new URL(href || window.location.href);
     const params = queryString.parse(isHash ? realURL.hash.replace(/.*(?=\?)/, '') : realURL.search);
     return key ? params[key] : params;
 };
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#getURLParams
+// https://release.group-ds.com/dev-newbee-handbook/utils/bom.html#getURLParams
 export const getURLParams = (key?: string, href?: string | URL) => getParams(key, href);
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#getURLParams
+// https://release.group-ds.com/dev-newbee-handbook/utils/bom.html#getURLHashParams
 export const getURLHashParams = (key?: string, href?: string | URL) => getParams(key, href, true);
 
 // https://release.group-ds.com/dev-newbee-handbook/utils/bom.html#getBrowsers

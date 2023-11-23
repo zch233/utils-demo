@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#getMonthWeekCount
+// https://release.group-ds.com/dev-newbee-handbook/utils/date.html#getMonthWeekCount
 export const getMonthWeekCount = (month?: string, fromStart = 1) => {
     // fromStart -> 定义周的第一天是周几,默认是周一
     // w -> 计算该月1号是周几,0是周日.
@@ -13,7 +13,7 @@ export const getMonthWeekCount = (month?: string, fromStart = 1) => {
     return Math.ceil((d - firstWeekDays) / 7) + 1;
 };
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#getMonthWeeks
+// https://release.group-ds.com/dev-newbee-handbook/utils/date.html#getMonthWeeks
 export const getMonthWeeks = (
     month?: string
 ): {
