@@ -1,4 +1,10 @@
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
+
+/**
+ * insert-css
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#copy
+ */
 const deselectCurrent = () => {
     const selection = document.getSelection();
     if (!selection.rangeCount) {
@@ -54,22 +60,20 @@ const clipboardToIE11Formatting = {
 const defaultMessage = 'Copy to clipboard: #{key}, Enter';
 
 function format(message: string) {
-    const copyKey = (/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl') + '+C';
-    return message.replace(/#{\s*key\s*}/g, copyKey);
+    const copyKey = `${/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl'}+C`;
+    return message.replaceAll(/#{\s*key\s*}/g, copyKey);
 }
 
 export function copy(text: string, options?: Options): boolean {
-    let debug,
-        message,
-        reselectPrevious,
-        range,
-        selection,
-        mark,
-        success = false;
+    let message;
+    let reselectPrevious;
+    let range;
+    let selection;
+    let mark;
+    let success = false;
     if (!options) {
         options = {};
     }
-    debug = options.debug || false;
     try {
         reselectPrevious = deselectCurrent();
 
@@ -99,10 +103,10 @@ export function copy(text: string, options?: Options): boolean {
                 e.preventDefault();
                 if (typeof e.clipboardData === 'undefined') {
                     // IE 11
-                    debug && console.warn('unable to use e.clipboardData');
-                    debug && console.warn('trying IE specific stuff');
+                    console.warn('unable to use e.clipboardData');
+                    console.warn('trying IE specific stuff');
                     window.clipboardData.clearData();
-                    const myFormat = clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting['default'];
+                    const myFormat = clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting.default;
                     window.clipboardData.setData(myFormat, text);
                 } else {
                     // all other browsers
@@ -116,7 +120,7 @@ export function copy(text: string, options?: Options): boolean {
             }
         });
 
-        document.body.appendChild(mark);
+        document.body.append(mark);
 
         range.selectNodeContents(mark);
         selection.addRange(range);
@@ -126,16 +130,16 @@ export function copy(text: string, options?: Options): boolean {
             throw new Error('copy command was unsuccessful');
         }
         success = true;
-    } catch (err) {
-        debug && console.error('unable to copy using execCommand: ', err);
-        debug && console.warn('trying IE specific stuff');
+    } catch (error) {
+        console.error('unable to copy using execCommand:', error);
+        console.warn('trying IE specific stuff');
         try {
             window.clipboardData.setData(options.format || 'text', text);
             options.onCopy && options.onCopy(window.clipboardData);
             success = true;
-        } catch (err) {
-            debug && console.error('unable to copy using clipboardData: ', err);
-            debug && console.error('falling back to prompt');
+        } catch (error) {
+            console.error('unable to copy using clipboardData:', error);
+            console.error('falling back to prompt');
             message = format('message' in options ? options.message : defaultMessage);
             window.prompt(message, text);
         }
@@ -149,7 +153,7 @@ export function copy(text: string, options?: Options): boolean {
         }
 
         if (mark) {
-            document.body.removeChild(mark);
+            mark.remove();
         }
         reselectPrevious();
     }

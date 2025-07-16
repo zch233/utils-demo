@@ -1,6 +1,8 @@
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
 /**
  * insert-css
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/utils.html#insertcss
  * @param { Boolean }     replace   是否替换样式
  * @param { Boolean }     prepend   样式插入位置是否为节点之前
  * @param { HTMLElement } container 样式插入位置
@@ -41,13 +43,13 @@ export function insertCSS(css: string, options?: { replace?: boolean; prepend?: 
         if (position === 'prepend') {
             container.insertBefore(styleElement, container.childNodes[0]);
         } else {
-            container.appendChild(styleElement);
+            container.append(styleElement);
         }
     }
 
     // strip potential UTF-8 BOM if css was read from a file
     if (css.charCodeAt(0) === 0xfeff) {
-        css = css.substr(1, css.length);
+        css = css.slice(1, 1 + css.length);
     }
 
     // actually add the stylesheet

@@ -1,21 +1,24 @@
-import { ref, computed, onActivated, onDeactivated, onBeforeUnmount } from 'vue';
-import { raf, cancelRaf, inBrowser } from '../utils';
+import { computed, onActivated, onBeforeUnmount, onDeactivated, ref } from 'vue';
+import { cancelRaf, inBrowser, raf } from '../utils';
 
-export type CurrentTime = {
+export interface CurrentTime {
     days: number;
     hours: number;
     total: number;
     minutes: number;
     seconds: number;
     milliseconds: number;
-};
+}
 
-export type UseCountDownOptions = {
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useCountDown.html
+ */
+export interface UseCountDownOptions {
     time: number;
     millisecond?: boolean;
     onChange?: (current: CurrentTime) => void;
     onFinish?: () => void;
-};
+}
 
 const SECOND = 1000;
 const MINUTE = 60 * SECOND;
@@ -43,7 +46,9 @@ function isSameSecond(time1: number, time2: number): boolean {
     return Math.floor(time1 / 1000) === Math.floor(time2 / 1000);
 }
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/useCountDown.html
+/**
+ * 文档地址: https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useCountDown.html
+ */
 export function useCountDown(options: UseCountDownOptions) {
     let rafId: number;
     let endTime: number;

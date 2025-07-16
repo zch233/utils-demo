@@ -1,11 +1,14 @@
-import { ref, Ref } from 'vue';
+import { ref } from 'vue';
 import { inBrowser } from '../utils';
+import type { Ref } from 'vue';
 
-type VisibilityState = 'hidden' | 'visible';
+export type VisibilityState = 'hidden' | 'visible';
 
 let visibility: Ref<VisibilityState>;
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/usePageVisibility.html
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/usePageVisibility.html
+ */
 export function usePageVisibility() {
     if (!visibility) {
         visibility = ref<VisibilityState>('visible');

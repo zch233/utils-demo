@@ -1,75 +1,105 @@
 {
     "name": "gupo-utils",
     "type": "module",
-    "version": "0.0.1",
-    "packageManager": "pnpm@8.10.2",
+    "version": "0.3.35",
     "description": "gupo-utils",
     "author": "zhangchao <529743595@qq.com>",
     "license": "MIT",
     "keywords": [
-        "utils"
+        "任意JavaScript环境",
+        "typescript",
+        "hooks",
+        "utils",
+        "vue3",
+        "es6"
     ],
     "sideEffects": false,
     "exports": {
         ".": {
-            "types": "./index.d.ts",
+            "types": "./index.d.cts",
             "import": "./dist/index.mjs",
             "require": "./dist/index.cjs"
         }
     },
-    "main": "dist/index.cjs",
-    "module": "dist/index.mjs",
-    "types": "index.d.ts",
     "files": [
         "dist",
-        "*.d.ts"
+        "*.d.ts",
+        "*.d.mts",
+        "*.d.cts"
     ],
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./index.d.cts",
     "scripts": {
+        "lint": "eslint . --fix",
         "build": "rollup -c",
-        "dev": "pnpm build --watch",
-        "lint": "prettier --write .",
+        "dev": "npm run build --watch",
         "prepublishOnly": "npm run build",
         "release": "bumpp --commit --push --tag && npm publish",
         "start": "esno src/index.ts",
         "typecheck": "tsc --noEmit",
         "test": "vitest",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "debug": "npm run build && npm pack"
     },
-    "devDependencies": {
-        "@commitlint/cli": "17.8.0",
-        "@commitlint/config-conventional": "17.8.0",
-        "@rollup/plugin-alias": "5.0.1",
-        "@rollup/plugin-commonjs": "25.0.4",
-        "@rollup/plugin-json": "6.0.0",
-        "@rollup/plugin-node-resolve": "15.1.0",
-        "@turf/turf": "6.5.0",
-        "@types/axios": "0.14.0",
-        "@types/lodash-es": "4.17.11",
-        "@types/node": "20.5.0",
-        "@types/throttle-debounce": "5.0.0",
-        "axios": "1.6.0",
-        "bumpp": "9.1.1",
-        "dayjs": "1.11.10",
-        "eslint": "8.47.0",
-        "esno": "0.17.0",
-        "husky": "7.0.0",
-        "lint-staged": "11.1.2",
+    "peerDependenciesMeta": {
+        "vue": {
+            "optional": true
+        },
+        "vue-router": {
+            "optional": true
+        }
+    },
+    "peerDependencies": {
+        "vue": ">3.0.0",
+        "vue-router": ">4.0.0"
+    },
+    "dependencies": {
+        "@types/lodash-es": "4.17.12",
         "lodash": "4.17.21",
         "lodash-es": "4.17.21",
-        "p-limit": "4.0.0",
-        "prettier": "3.0.3",
-        "query-string": "8.1.0",
-        "rollup": "3.28.0",
-        "rollup-plugin-dts": "5.3.1",
-        "rollup-plugin-esbuild": "5.0.0",
-        "typescript": "5.1.6",
-        "vite": "4.5.0",
-        "vitest": "0.34.1",
-        "vue": "3.3.7"
+        "lodash-unified": "1.0.3"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "19.2.1",
+        "@commitlint/config-conventional": "19.1.0",
+        "@gupo/eslint-config": "0.1.6",
+        "@rollup/plugin-alias": "5.1.0",
+        "@rollup/plugin-commonjs": "25.0.7",
+        "@rollup/plugin-json": "6.1.0",
+        "@rollup/plugin-node-resolve": "15.2.3",
+        "@types/axios": "0.14.0",
+        "@types/node": "20.11.30",
+        "@vue/runtime-core": "3.4.21",
+        "@vue/test-utils": "2.4.5",
+        "axios": "1.6.8",
+        "bumpp": "9.4.0",
+        "dayjs": "1.11.10",
+        "eslint": "8.57.0",
+        "happy-dom": "14.3.1",
+        "husky": "9.0.11",
+        "jsdom": "24.0.0",
+        "lint-staged": "11.1.2",
+        "prettier": "3.2.5",
+        "query-string": "9.0.0",
+        "rollup": "4.14.3",
+        "rollup-plugin-dts": "6.1.0",
+        "rollup-plugin-esbuild": "6.1.1",
+        "typescript": "5.4.5",
+        "vite": "5.2.9",
+        "vitest": "1.5.0",
+        "vue": "3.4.19",
+        "vue-router": "4.4.0"
+    },
+    "resolutions": {
+        "vue-demi": "0.14.7"
     },
     "lint-staged": {
-        "!(.husky)*": [
-            "prettier --write"
+        "*": [
+            "eslint --fix"
         ]
+    },
+    "publishConfig": {
+        "registry": "https://packages.aliyun.com/5eb3e37038076f00011bcd4a/npm/npm-registry/"
     }
 }

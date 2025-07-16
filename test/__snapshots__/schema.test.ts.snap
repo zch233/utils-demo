@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`form2Schema and schema2Form > form2Schema and schema2Form should be correct 1`] = `
+{
+  "children": [
+    {
+      "description": "a",
+      "key": "a",
+      "required": 0,
+      "sortedProps": [
+        "a",
+      ],
+      "title": "a",
+      "type": "string",
+    },
+    {
+      "description": "b",
+      "key": "b",
+      "required": 0,
+      "sortedProps": [
+        "b",
+      ],
+      "title": "b",
+      "type": "string",
+    },
+  ],
+  "description": "对象描述",
+  "key": "root",
+  "required": 1,
+  "sortedProps": [
+    "a",
+    "b",
+  ],
+  "title": "对象",
+  "type": "object",
+}
+`;

@@ -1,30 +1,32 @@
-import { lineString, featureCollection } from '@turf/turf';
-
-// https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#parseHexColor
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#parsehexcolor
+ */
 export const parseHexColor = function (hexStr: string) {
     return hexStr.length === 4
         ? hexStr
-              .substr(1)
+              .slice(1)
               .split('')
               .map(function (s) {
-                  return 0x11 * parseInt(s, 16);
+                  return 0x11 * Number.parseInt(s, 16);
               })
-        : [hexStr.substr(1, 2), hexStr.substr(3, 2), hexStr.substr(5, 2)].map(function (s) {
-              return parseInt(s, 16);
+        : [hexStr.slice(1, 3), hexStr.slice(3, 5), hexStr.slice(5, 7)].map(function (s) {
+              return Number.parseInt(s, 16);
           });
 };
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#gradientColors
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#gradientcolors
+ */
 export const gradientColors = (start: string, end: string, steps: number, gamma: number) => {
     let i, j, ms, me;
     const output: any = [];
     const so: any = [];
     gamma = gamma || 1;
     const normalize = function (channel: number) {
-        return Math.pow(channel / 255, gamma);
+        return (channel / 255) ** gamma;
     };
     const pad = function (s: string) {
-        return s.length === 1 ? '0' + s : s;
+        return s.length === 1 ? `0${s}` : s;
     };
     const _start = parseHexColor(start).map(normalize);
     const _end = parseHexColor(end).map(normalize);
@@ -32,14 +34,16 @@ export const gradientColors = (start: string, end: string, steps: number, gamma:
         ms = i / (steps - 1);
         me = 1 - ms;
         for (j = 0; j < 3; j++) {
-            so[j] = pad(Math.round(Math.pow(_start[j] * me + _end[j] * ms, 1 / gamma) * 255).toString(16));
+            so[j] = pad(Math.round((_start[j] * me + _end[j] * ms) ** (1 / gamma) * 255).toString(16));
         }
-        output.push('#' + so.join(''));
+        output.push(`#${so.join('')}`);
     }
     return output;
 };
 
-// https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#geoJson
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#geojson
+ */
 interface geoJson {
     coordinates: Array<any>;
     lnglat: Array<string | number>;
@@ -66,46 +70,9 @@ export const createGeoJson = (fetchData: Array<geoJson>) => {
                 },
                 geometry: {
                     type: 'MultiPolygon',
-                    coordinates: coordinates,
+                    coordinates,
                 },
             };
         }),
     };
-};
-
-// https://release.group-ds.com/dev-newbee-handbook/utils/screen.html#polygon2line
-export const polygon2line = (geojson: Record<string, any>) => {
-    function flatten(array: any[]) {
-        return [].concat([], ...array);
-    }
-
-    function polygonToLineString(coordinates: any[], properties: any) {
-        return coordinates.map(function (coordinates) {
-            return lineString(coordinates, properties);
-        });
-    }
-
-    function multiPolygonToLineString(coordinates: any[], properties: any) {
-        return flatten(
-            coordinates.map(function (coordinates) {
-                return polygonToLineString(coordinates, properties);
-            })
-        );
-    }
-
-    function toLineString(feature: Record<string, any>) {
-        const geometry = feature.geometry,
-            properties = feature.properties;
-
-        switch (geometry.type) {
-            case 'Polygon':
-                return polygonToLineString(geometry.coordinates, properties);
-            case 'MultiPolygon':
-                return multiPolygonToLineString(geometry.coordinates, properties);
-            default:
-                return feature;
-        }
-    }
-    const features = geojson.features.map(toLineString);
-    return featureCollection(flatten(features));
 };

@@ -34,16 +34,25 @@ export default [
                 format: 'cjs',
             },
         ],
-        external: [],
+        external: ['vue', 'vue-router'],
         plugins,
     })),
     ...entries.map(input => ({
         input,
-        output: {
-            file: input.replace('src/', '').replace('.ts', '.d.ts'),
-            format: 'esm',
-        },
-        external: ['lodash-es'],
-        plugins: [dts({ respectExternal: true })],
+        output: [
+            {
+                file: input.replace('src/', '').replace('.ts', '.d.ts'),
+            },
+            {
+                file: input.replace('src/', '').replace('.ts', '.d.mts'),
+                format: 'esm',
+            },
+            {
+                file: input.replace('src/', '').replace('.ts', '.d.cts'),
+                format: 'cjs',
+            },
+        ],
+        external: ['lodash-es', 'vue', 'vue-router'],
+        plugins: [dts()],
     })),
 ];
