@@ -27,6 +27,9 @@ export function getScrollParent(el: Element, root: ScrollElement | undefined = d
     return root;
 }
 
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useScrollParent.html
+ */
 export function useScrollParent(el: Ref<Element | undefined>, root: ScrollElement | undefined = defaultRoot) {
     const scrollParent = ref<Element | Window>();
 

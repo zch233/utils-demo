@@ -25,7 +25,7 @@ const position = (el: HTMLElement) => {
 };
 
 /**
- * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/useScrollTo.html
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useScrollTo.html
  */
 export const useScrollTo = ({ el, to, duration = 500, callback }: UseScrollToOptions) => {
     const isActiveRef = shallowRef(false);

@@ -26,6 +26,9 @@ export function route({
     }
 }
 
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useRoute.html
+ */
 export function useRoute() {
     const vm = getCurrentInstance()!.proxy as ComponentPublicInstance<RouteProps>;
     return () => route(vm);

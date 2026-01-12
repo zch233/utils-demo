@@ -11,6 +11,9 @@ export interface UseEventListenerOptions {
     passive?: boolean;
 }
 
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useEventListener.html
+ */
 export function useEventListener<K extends keyof DocumentEventMap>(
     type: K,
     listener: (event: DocumentEventMap[K]) => void,

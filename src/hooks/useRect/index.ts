@@ -13,6 +13,9 @@ const makeDOMRect = (width: number, height: number) =>
         height,
     }) as DOMRect;
 
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useRect.html
+ */
 export const useRect = (elementOrRef: Element | Window | Ref<Element | Window | undefined>) => {
     const element = unref(elementOrRef);
 

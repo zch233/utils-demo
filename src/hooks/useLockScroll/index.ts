@@ -9,6 +9,9 @@ let totalLockCount = 0;
 
 const BODY_LOCK_CLASS = 'van-overflow-hidden';
 
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useLockScroll.html
+ */
 export function useLockScroll(rootRef: Ref<HTMLElement | undefined>, shouldLock: () => boolean) {
     const touch = useTouch();
     const DIRECTION_UP = '01';

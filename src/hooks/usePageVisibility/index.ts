@@ -7,7 +7,7 @@ export type VisibilityState = 'hidden' | 'visible';
 let visibility: Ref<VisibilityState>;
 
 /**
- * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/usePageVisibility.html
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/usePageVisibility.html
  */
 export function usePageVisibility() {
     if (!visibility) {

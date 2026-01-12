@@ -5,7 +5,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import alias from '@rollup/plugin-alias';
 
-const entries = ['src/index.ts'];
+const entries = ['src/index.ts', 'src/hooks/index.ts'];
 
 const plugins = [
     alias({
@@ -15,10 +15,10 @@ const plugins = [
         preferBuiltins: true,
     }),
     json(),
-    commonjs(),
     esbuild({
         target: 'node14',
     }),
+    commonjs(),
 ];
 
 export default [
@@ -41,14 +41,15 @@ export default [
         input,
         output: [
             {
-                file: input.replace('src/', '').replace('.ts', '.d.ts'),
+                file: input.replace('src/', 'dist/').replace('.ts', '.d.ts'),
+                format: 'es',
             },
             {
-                file: input.replace('src/', '').replace('.ts', '.d.mts'),
+                file: input.replace('src/', 'dist/').replace('.ts', '.d.mts'),
                 format: 'esm',
             },
             {
-                file: input.replace('src/', '').replace('.ts', '.d.cts'),
+                file: input.replace('src/', 'dist/').replace('.ts', '.d.cts'),
                 format: 'cjs',
             },
         ],

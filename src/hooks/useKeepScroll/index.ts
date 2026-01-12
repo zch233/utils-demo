@@ -2,7 +2,7 @@ import { onActivated, ref } from 'vue';
 import { onBeforeRouteLeave } from 'vue-router';
 
 /**
- * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/utils/hooks/useKeepScroll.html
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useKeepScroll.html
  */
 export const useKeepScroll = (el?: any) => {
     const scrollTop = ref<number[]>([]);

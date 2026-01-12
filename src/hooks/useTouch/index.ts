@@ -13,6 +13,9 @@ function getDirection(x: number, y: number) {
     return '';
 }
 
+/**
+ * 文档地址：https://release.group-ds.com/dev-newbee-handbook/utils/hooks/useTouch.html
+ */
 export function useTouch() {
     const startX = ref(0);
     const startY = ref(0);
